@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ptteng.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ptteng.model.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
+    <result column="realname_state" jdbcType="INTEGER" property="realnameState" />
+    <result column="newgift_statu" jdbcType="INTEGER" property="newgiftStatu" />
+    <result column="account_state" jdbcType="INTEGER" property="accountState" />
+    <result column="create_at" jdbcType="BIGINT" property="createAt" />
+    <result column="update_at" jdbcType="BIGINT" property="updateAt" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, phone_num, user_pwd, salt, card_id, realname_state, newgift_statu, 
+    account_state, create_at, update_at, create_by, update_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ptteng.model.User">
+    insert into user (id, user_name, phone_num, 
+      user_pwd, salt, card_id, 
+      realname_state, newgift_statu, account_state, 
+      create_at, update_at, create_by, 
+      update_by)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, 
+      #{realnameState,jdbcType=INTEGER}, #{newgiftStatu,jdbcType=INTEGER}, #{accountState,jdbcType=INTEGER}, 
+      #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
+      #{updateBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ptteng.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="cardId != null">
+        card_id,
+      </if>
+      <if test="realnameState != null">
+        realname_state,
+      </if>
+      <if test="newgiftStatu != null">
+        newgift_statu,
+      </if>
+      <if test="accountState != null">
+        account_state,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="realnameState != null">
+        #{realnameState,jdbcType=INTEGER},
+      </if>
+      <if test="newgiftStatu != null">
+        #{newgiftStatu,jdbcType=INTEGER},
+      </if>
+      <if test="accountState != null">
+        #{accountState,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ptteng.model.User">
+    update user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="realnameState != null">
+        realname_state = #{realnameState,jdbcType=INTEGER},
+      </if>
+      <if test="newgiftStatu != null">
+        newgift_statu = #{newgiftStatu,jdbcType=INTEGER},
+      </if>
+      <if test="accountState != null">
+        account_state = #{accountState,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ptteng.model.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      realname_state = #{realnameState,jdbcType=INTEGER},
+      newgift_statu = #{newgiftStatu,jdbcType=INTEGER},
+      account_state = #{accountState,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

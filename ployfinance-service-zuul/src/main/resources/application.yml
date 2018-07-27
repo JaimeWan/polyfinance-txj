@@ -1,0 +1,37 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8769
+
+spring:
+  application:
+    name: polyfinance-service-zuul
+
+zuul:
+  routes:
+    api-a:
+      path: /home/**
+      serviceId: polyfinance-home-web #以/home/ 开头的请求都转发给前台服务
+    api-b:
+      path: /admin/**
+      serviceId: polyfinance-admin-web #以/admin/ 开头的请求都转发给后台服务
+
+#使用zuul时断路器不起作用时，加上以下三项配置
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
